@@ -24,6 +24,6 @@ export const Button = (props) => {
       
     */
     return (
-        <button>{children}</button>
+        <button className={className}>{children}</button>
     );
 };
