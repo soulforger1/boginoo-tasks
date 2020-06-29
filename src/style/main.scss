@@ -1,0 +1,71 @@
+// @import './variables.scss';
+@import './components.scss';
+@import './flex.scss';
+@import './typograph.scss';
+
+@function pow($base, $exp) {
+    $res: 1;
+    @for $i from 1 through $exp {
+        $res: $res * $base;
+    }
+    @return $res;
+}
+
+@each $name, $color in $colors {
+    .c-#{$name} {
+        color: $color;
+    }
+
+    .b-#{$name} {
+        background-color: $color;
+    }
+
+    @for $i from 1 through 10 {
+        .br-#{$name}-#{$i} {
+            border: solid $color $i + px;
+        }
+    }
+}
+
+@for $i from 1 through 10 {
+    .h-#{$i} {
+        height: pow(2, $i) + px;
+    }
+    .w-#{$i} {
+        width: pow(2, $i) + px;
+    }
+    .pa-#{$i} {
+        padding: pow(2, $i) + px;
+    }
+    .ph-#{$i} {
+        padding-left: pow(2, $i) + px;
+        padding-right: pow(2, $i) + px;
+    }
+    .ma-#{$i} {
+        margin: pow(2, $i) + px;
+    }
+    .mt-#{$i} {
+        margin-top: pow(2, $i) + px;
+    }
+    .ml-#{$i} {
+        margin-left: pow(2, $i) + px;
+    }
+}
+
+body {
+    margin: 0;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+
+// ЭНЭ CSS ЯМАР УЧИРТАЙГ САЙН СУДЛАХ
+* {
+    box-sizing: border-box;
+}
