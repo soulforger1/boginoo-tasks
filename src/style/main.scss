@@ -79,10 +79,27 @@ body {
 .br-none {
     border: 0;
 }
+
 .input {
     opacity: 0.4;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+.center {
+    text-align: center;
+}
+
+.transform {
+    transition-duration: 1s;
+}
+
+
+.outline-none {
+    outline: none;
+}
 // ЭНЭ CSS ЯМАР УЧИРТАЙГ САЙН СУДЛАХ
 * {
     box-sizing: border-box;

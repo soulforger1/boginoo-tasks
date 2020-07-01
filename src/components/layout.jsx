@@ -1,12 +1,12 @@
 import React from 'react';
 import { Navigation } from './';
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, status }) => {
     
     return (
         <div className='flex flex-col items-center pa-3' style={{ width: '100vw', height: '100vh' }}>
             {/* NAVIGATION */}
-            <Navigation />
+            <Navigation status={status} />
 
             {/* MAIN CONTENT */}
             <div className='w100 flex-1'>
