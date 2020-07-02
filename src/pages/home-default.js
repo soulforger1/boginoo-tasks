@@ -9,8 +9,8 @@ export const HomeDefault = () => {
     }
 
     useEffect(() => {
-        document.getElementById('transformLeft').style.transform = "translate(26px)"
-        document.getElementById('transformRigth').style.transform = "translate(-26px)"
+        document.getElementById('transformLeft').style.transform = "translate(30px)"
+        document.getElementById('transformRigth').style.transform = "translate(-30px)"
         document.getElementById('leftBracket').style.transform = "translate(28px)"
         document.getElementById('rigthBracket').style.transform = "translate(-28px)"
     }, [])
@@ -28,8 +28,8 @@ export const HomeDefault = () => {
                     Boginoo
                 </div>
                 <div className='mt-5 flex'>
-                    <Input className="fs-18 lh-23 br-none bx-sh-2 br-ra-100 c-grey h-4 w-58 ph-4 outline-none" placeholder='https://www.web-huudas.mn' />
-                    <Button className="font-ubuntu fs-18 lh-23 br-none up br-ra-100 bold c-default h-4 w-19 ph-4 ml-4 b-primary outline-none">Богиносгох</Button>
+                    <Input className="fs-18 lh-23 br-none bx-sh-2 br-ra-100 h-4 w-58 ph-4 outline-none" placeholder='https://www.web-huudas.mn' />
+                    <Button className="font-ubuntu fs-18 lh-23 br-none up br-ra-100 bold c-default h-4 w-19 ph-4 ml-4 b-primary outline-none pointer">Богиносгох</Button>
                 </div>
             </div>
         </Layout>

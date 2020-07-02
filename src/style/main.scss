@@ -59,8 +59,14 @@
     .mr-#{$i} {
         margin-right: pow(2, $i) + px;
     }
+    .mb-#{$i} {
+        margin-bottom: pow(2, $i) + px;
+    }
     .bx-sh-#{$i} {
         box-shadow: 0px 0px $i + px 0px black;
+    }
+    .opacity-#{$i} {
+        opacity: $i / 10;
     }
 }
 
@@ -100,6 +106,14 @@ body {
 .outline-none {
     outline: none;
 }
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 112px;
+}
+
 // ЭНЭ CSS ЯМАР УЧИРТАЙГ САЙН СУДЛАХ
 * {
     box-sizing: border-box;
