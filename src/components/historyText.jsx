@@ -2,13 +2,17 @@ import React from 'react'
 
 export const HistoryText = ({ long, short }) => {
   const copy = () => {
+    const input = document.createElement('input')
+    input.id = 'copy'
+    input.value = short
+    // input.style.position = "absolute"
+    document.body.appendChild(input)
 
-    // console.log(document.getElementById('shortLink'))
-    // document.getElementById("short").select();
+    const inputCopy = document.getElementById('copy');
+    inputCopy.focus();
+    inputCopy.select();
 
-    // document.execCommand("copy");
-
-    // alert("Copied the text: " + document.getElementById("short").value);
+    document.execCommand("copy")
   }
   return (
     <div>
