@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom'
-import { Layout, Button, Input, IconDash, IconEndBracket, IconStartBracket, HistoryText, auth, firestore } from '../components/';
+import { Layout, Button, Input, IconDash, IconEndBracket, IconStartBracket, HistoryText } from '../components/';
+import { context } from '../provider/react-provider'
 
 export const History = () => {
     const [shorteningHistory, setShorteningHistory] = useState([])
+    const { user } = useContext(context)
     const history = useHistory();
     const homePage = () => {
         history.push('/')
     }
 
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-          if (user) {
-            var uid = user.uid;
-            firestore
-              .collection("users")
-              .doc(uid)
-              .get()
-              .then((data) => {
-                setShorteningHistory(data.data().history)
-              });
-          }
-        });
-      }, []);
+        if (user) {
+            setShorteningHistory(user.history)
+        }
+    }, [user]);
 
     return (
         <Layout>
             <div className='h100 flex flex-col items-center'>
                 <div className='flex justify-center items-center mt-6 pointer' onClick={() => homePage()}>
-                    <IconStartBracket/>
-                    <IconDash/>
-                    <IconEndBracket/>
+                    <IconStartBracket />
+                    <IconDash />
+                    <IconEndBracket />
                 </div>
                 <div className='font-lobster c-primary fs-56 lh-70 pointer' onClick={() => homePage()}>
                     Boginoo
@@ -42,7 +35,7 @@ export const History = () => {
                 <div className="mb-7">
                     <div className="font-ubuntu fs-32 lh-37 bold c-primary w-78 mt-6">Түүх</div>
                     {
-                        shorteningHistory.map((cur, index) => <HistoryText key={index} long={cur.long} short={cur.short}/>)
+                        shorteningHistory.map((cur, index) => <HistoryText key={index} long={cur.long} short={cur.short} />)
                     }
                 </div>
             </div>

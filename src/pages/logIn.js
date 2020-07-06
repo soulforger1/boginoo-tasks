@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import {
   Layout,
@@ -6,11 +6,13 @@ import {
   Input,
   IconDash,
   IconEndBracket,
-  IconStartBracket,
-  auth,
+  IconStartBracket
 } from "../components/";
+import { context } from '../provider/react-provider'
 
 export const LogIn = () => {
+  const { logIn } = useContext(context)
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
@@ -24,21 +26,6 @@ export const LogIn = () => {
   const recover = () => {
     history.push("/recover");
   };
-
-  const logIn = ({ email, password }) => {
-    auth
-      .signInWithEmailAndPassword(email, password).then(() => history.push('/'))
-      .catch(function (error) {
-        var errorCode = (error.code).split('/')[1];
-        if (errorCode === 'invalid-email')
-          alert('Email хаягаа зөв бич нүү !!!')
-        else if (errorCode === 'user-not-found')
-          alert('Бүртгэлтэй бус Email байна !!!')
-        else if (errorCode === 'wrong-password')
-          alert('Нууц үг буруу байна !!!')
-
-      });
-  }
 
   return (
     <Layout status="logging">
