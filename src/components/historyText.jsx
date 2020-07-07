@@ -5,14 +5,16 @@ export const HistoryText = ({ long, short }) => {
     const input = document.createElement('input')
     input.id = 'copy'
     input.value = short
-    // input.style.position = "absolute"
+    input.style.position = "absolute"
+    input.style.left = '-999em'
     document.body.appendChild(input)
 
     const inputCopy = document.getElementById('copy');
-    inputCopy.focus();
     inputCopy.select();
 
     document.execCommand("copy")
+    alert('Богино линк хуулагдсан')
+    document.body.removeChild(input)
   }
   return (
     <div>

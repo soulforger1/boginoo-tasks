@@ -22,7 +22,7 @@
 
     @for $i from 1 through 100 {
         .br-#{$name}-#{$i} {
-            border: solid $color $i + px;
+            border: solid $color $i + px !important;
         }
         .br-ra-#{$i} {
             border-radius: $i + px;
@@ -39,7 +39,7 @@
     }
 }
 
-@for $i from 1 through 10 {
+@for $i from 0 through 10 {
     .pa-#{$i} {
         padding: pow(2, $i) + px;
     }
@@ -57,7 +57,7 @@
         margin-left: pow(2, $i) + px;
     }
     .mr-#{$i} {
-        margin-right: pow(2, $i) + px;
+        margin-right: pow(2, $i) + px !important;
     }
     .mb-#{$i} {
         margin-bottom: pow(2, $i) + px;
@@ -114,7 +114,15 @@ body {
     right: 112px;
 }
 
+.ma-none {
+    margin: 0;
+}
+
 // ЭНЭ CSS ЯМАР УЧИРТАЙГ САЙН СУДЛАХ
 * {
     box-sizing: border-box;
+}
+
+body {
+    // overflow: hidden;
 }

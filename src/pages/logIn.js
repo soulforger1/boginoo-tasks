@@ -62,12 +62,13 @@ export const LogIn = () => {
           placeholder="••••••••••"
           label="Нууц үг"
           id="password"
+          type="password"
           labelClassName="font-ubuntu fs-18 lh-23 h-4 w-38 pa-2"
           onChange={() => setPassword(document.getElementById('password').value)}
         />
         <div className="flex w-37 mt-4 justify-between">
-          <div className="font-ubuntu c-primary flex pointer">
-            <div className="br-primary-1 w-2 h-2 br-ra-4 mr-2"></div>
+          <div className="font-ubuntu c-primary flex">
+            <input type="checkbox" className="br-primary-1 w-2 h-2 br-ra-4 ma-none mr-2 pointer"></input>
             <div>Намайг сана</div>
           </div>
           <div onClick={() => recover()} className="font-ubuntu pointer">

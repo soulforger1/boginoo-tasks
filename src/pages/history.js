@@ -29,7 +29,7 @@ export const History = () => {
                     Boginoo
                 </div>
                 <div className='mt-5 flex'>
-                    <Input className="fs-18 lh-23 br-none bx-sh-2 br-ra-100 c-grey h-4 w-58 ph-4 outline-none" placeholder='https://www.web-huudas.mn' />
+                    <Input className="fs-18 lh-23 br-none bx-sh-2 br-ra-100 h-4 w-58 ph-4 outline-none" placeholder='https://www.web-huudas.mn' />
                     <Button className="font-ubuntu fs-18 lh-23 br-none up br-ra-100 bold c-default h-4 w-19 ph-4 ml-4 b-primary outline-none pointer">Богиносгох</Button>
                 </div>
                 <div className="mb-7">
