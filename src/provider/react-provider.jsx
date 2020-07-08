@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { auth, firestore } from '../components'
 import { useHistory } from "react-router-dom";
 
@@ -21,6 +21,7 @@ export const Provider = ({ children }) => {
 
             });
     }
+
     const createUser = ({ email, password, rePassword }) => {
         if (password !== rePassword) {
             alert('Нууц үг таарсангүй шалгаад дахин оролдоно уу !!!')
@@ -51,18 +52,20 @@ export const Provider = ({ children }) => {
         auth.signOut().then(() => history.push("/"))
     }
 
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-            var uid = user.uid;
-            firestore
-                .collection("users")
-                .doc(uid)
-                .get()
-                .then((data) => {
-                    setUser(data.data())
-                });
-        }
-    })
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                var uid = user.uid;
+                firestore
+                    .collection("users")
+                    .doc(uid)
+                    .get()
+                    .then((data) => {
+                        setUser(data.data())
+                    });
+            }
+        })
+    }, [])
     return (
         <context.Provider value={{ logIn, createUser, user, logOut }}>
             {children}
