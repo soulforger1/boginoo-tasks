@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeDefault, LogIn, SignOut, Recover, History, Result } from './pages';
+import { HomeDefault, LogIn, SignOut, Recover, History, Result, Shortened } from './pages';
 import { Provider } from './provider/react-provider'
 import {
     BrowserRouter as Router,
@@ -13,9 +13,6 @@ const App = () => {
         <Router>
             <Provider>
                 <Switch>
-                    <Route path="/" exact>
-                        <HomeDefault />
-                    </Route>
                     <Route path="/logIn">
                         <LogIn />
                     </Route>
@@ -30,6 +27,12 @@ const App = () => {
                     </Route>
                     <Route path="/result">
                         <Result />
+                    </Route>
+                    <Route path="/shortened">
+                        <Shortened />
+                    </Route>
+                    <Route path="/">
+                        <HomeDefault />
                     </Route>
                 </Switch>
             </Provider>

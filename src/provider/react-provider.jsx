@@ -6,7 +6,12 @@ export const context = createContext();
 
 export const Provider = ({ children }) => {
     const [user, setUser] = useState();
+    const [links, setLinks] = useState({
+        long: '',
+        short: ''
+    })
     const history = useHistory();
+    
     const logIn = ({ email, password }) => {
         auth
             .signInWithEmailAndPassword(email, password).then(() => history.push('/'))
@@ -63,8 +68,21 @@ export const Provider = ({ children }) => {
                 });
         }
     })
+
+    const getLongLink = (id) => {
+        firestore
+            .collection('links')
+            .doc(id)
+            .get()
+            .then((res) => {
+                window.location.replace(res.data().long);
+            })
+            .catch((error) => {
+                window.location.href = '/'
+            })
+    }
     return (
-        <context.Provider value={{ logIn, createUser, user, logOut }}>
+        <context.Provider value={{ logIn, createUser, user, logOut, links, setLinks, domain: 'https://nest-boginoo.web.app/' , getLongLink}}>
             {children}
         </context.Provider>
     )

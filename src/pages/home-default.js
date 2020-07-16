@@ -1,9 +1,15 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from 'react';
+import { useHistory, useLocation } from 'react-router-dom'
 import { Layout, Button, Input, IconDash, IconEndBracket, IconStartBracket } from '../components/';
+import { Short } from '../components/shorteningLink';
+import { context } from '../provider/react-provider'
 
 export const HomeDefault = () => {
+    const { getLongLink, domain, setLinks } = useContext(context)
+    const [link, setLink] = useState()
     const history = useHistory();
+    const location = useLocation();
+    const id = location.pathname.slice(1);
     const homePage = () => {
         history.push('/')
     }
@@ -13,7 +19,22 @@ export const HomeDefault = () => {
         document.getElementById('transformRigth').style.transform = "translate(-30px)"
         document.getElementById('leftBracket').style.transform = "translate(28px)"
         document.getElementById('rigthBracket').style.transform = "translate(-28px)"
-    }, [])
+        if (id !== '') 
+            getLongLink(id)
+
+    }, [id, getLongLink])
+
+    const shortening = async () => {
+        const res = await Short(link)
+        
+        if (res !== undefined) {
+            setLinks({
+                long: link,
+                short: domain + res
+            })            
+        }
+        
+    }
     return (
         <Layout>
             <div className='h100 flex flex-col items-center'>
@@ -28,8 +49,8 @@ export const HomeDefault = () => {
                     Boginoo
                 </div>
                 <div className='mt-5 flex'>
-                    <Input className="fs-18 lh-23 br-none bx-sh-2 br-ra-100 h-4 w-58 ph-4 outline-none" placeholder='https://www.web-huudas.mn' />
-                    <Button className="font-ubuntu fs-18 lh-23 br-none up br-ra-100 bold c-default h-4 w-19 ph-4 ml-4 b-primary outline-none pointer">Богиносгох</Button>
+                    <Input onChange={(e) => setLink(e.target.value)} className="fs-18 lh-23 br-none bx-sh-2 br-ra-100 h-4 w-58 ph-4 outline-none" placeholder='https://www.web-huudas.mn' />
+                    <Button onclick={() => shortening()} className="font-ubuntu fs-18 lh-23 br-none up br-ra-100 bold c-default h-4 w-19 ph-4 ml-4 b-primary outline-none pointer">Богиносгох</Button>
                 </div>
             </div>
         </Layout>
