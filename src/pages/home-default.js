@@ -5,7 +5,7 @@ import { Short } from '../components/shorteningLink';
 import { context } from '../provider/react-provider'
 
 export const HomeDefault = () => {
-    const { getLongLink, domain, setLinks } = useContext(context)
+    const { getLongLink, domain, setLinks, addHistory } = useContext(context)
     const [link, setLink] = useState()
     const history = useHistory();
     const location = useLocation();
@@ -19,31 +19,35 @@ export const HomeDefault = () => {
         document.getElementById('transformRigth').style.transform = "translate(-30px)"
         document.getElementById('leftBracket').style.transform = "translate(28px)"
         document.getElementById('rigthBracket').style.transform = "translate(-28px)"
-        if (id !== '') 
+        if (id !== '')
             getLongLink(id)
+        else
+            document.getElementById('home').style.visibility = "visible";
 
-    }, [id, getLongLink])
+    }, [])
 
     const shortening = async () => {
         const res = await Short(link)
-        
+
         if (res !== undefined) {
             setLinks({
                 long: link,
                 short: domain + res
-            })            
+            })
+            await addHistory(link, domain + res)
+            history.push('/shortened')
         }
-        
+
     }
     return (
         <Layout>
-            <div className='h100 flex flex-col items-center'>
+            <div id="home" className='home h100 flex flex-col items-center'>
                 <div className='flex justify-center items-center mt-8 pointer' onClick={() => homePage()}>
-                    <IconStartBracket className="transform" id="leftBracket"/>
-                    <IconDash className="transform" id="transformLeft"/>
-                    <IconDash className="ml-2 mr-2"/>
-                    <IconDash className="transform" id="transformRigth"/>
-                    <IconEndBracket className="transform" id="rigthBracket"/>
+                    <IconStartBracket className="transform" id="leftBracket" />
+                    <IconDash className="transform" id="transformLeft" />
+                    <IconDash className="ml-2 mr-2" />
+                    <IconDash className="transform" id="transformRigth" />
+                    <IconEndBracket className="transform" id="rigthBracket" />
                 </div>
                 <div className='font-lobster c-primary fs-56 lh-70 pointer' onClick={() => homePage()}>
                     Boginoo

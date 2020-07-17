@@ -5,7 +5,7 @@ import { Short } from '../components/shorteningLink';
 import { context } from '../provider/react-provider'
 
 export const Shortened = () => {
-    const { domain, links } = useContext(context)
+    const { domain, links, setLinks } = useContext(context)
     const [link, setLink] = useState()
     const history = useHistory();
     const homePage = () => {
@@ -19,12 +19,14 @@ export const Shortened = () => {
         document.getElementById('rigthBracket').style.transform = "translate(-28px)"
     }, [])
 
-    console.log(links);
     const shortening = async () => {
         const res = await Short(link)
 
         if (res !== undefined) {
-            console.log(domain + res)
+            setLinks({
+                long: link,
+                short: domain + res
+            })   
         }
 
     }
@@ -68,7 +70,7 @@ export const Shortened = () => {
                     <div className='mt-6'>
                         <div className='opacity-5 fs-16 lh-18'>Богино холбоос:</div>
                         <div className='fs-20 lh-23 mt-3' id="short">{links.short}</div>
-                        <div className='mt-6 fs-18 lh-21 c-primary pointer' onClick={() => copy()}>Хуулж авах</div>
+                        <div className='mt-4 fs-18 lh-21 c-primary pointer' onClick={() => copy()}>Хуулж авах</div>
                     </div>
                 </div>
             </div>
