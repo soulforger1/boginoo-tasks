@@ -15,7 +15,7 @@ export const Layout = ({ children, status }) => {
 
             {/* FOOTER */}
             <div className='font-ubuntu fs-16 lh-18'>
-                Made with ♥ by Nest Academy
+                Made with ♥ by Nest Academy ( Student Zolboo)
             </div>
             <div className='font-ubuntu fs-16 lh-18' style={{ opacity: 0.2 }}>
                 ©boginoo.io 2020

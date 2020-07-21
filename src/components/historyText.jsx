@@ -16,12 +16,13 @@ export const HistoryText = ({ long, short }) => {
     alert('Богино линк хуулагдсан')
     document.body.removeChild(input)
   }
+  long = long.slice(0, 32) + '...'
   return (
     <div>
       <div className='flex justify-between font-ubuntu'>
         <div className='mt-6'>
           <div className='opacity-5 fs-16 lh-18'>Өгөгдсөн холбоос:</div>
-          <div className='fs-20 lh-23 mt-3'>{long}</div>
+          <div className='fs-20 lh-23 mt-3 w-40'>{long}</div>
         </div>
         <div className='mt-6'>
           <div className='opacity-5 fs-16 lh-18'>Богино холбоос:</div>
