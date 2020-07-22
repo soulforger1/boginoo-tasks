@@ -1,15 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Layout, Button, Input, IconDash, IconEndBracket, IconStartBracket } from '../components/';
 import { Short } from '../components/shorteningLink';
 import { context } from '../provider/react-provider'
 
 export const HomeDefault = () => {
-    const { getLongLink, domain, setLinks, addHistory } = useContext(context)
+    const { domain, setLinks, addHistory } = useContext(context)
     const [link, setLink] = useState()
     const history = useHistory();
-    const location = useLocation();
-    const id = location.pathname.slice(1);
     const homePage = () => {
         history.push('/')
     }
@@ -19,12 +17,8 @@ export const HomeDefault = () => {
         document.getElementById('transformRigth').style.transform = "translate(-30px)"
         document.getElementById('leftBracket').style.transform = "translate(28px)"
         document.getElementById('rigthBracket').style.transform = "translate(-28px)"
-        if (id !== '')
-            getLongLink(id)
-        else
-            document.getElementById('home').style.visibility = "visible";
 
-    }, [getLongLink, id])
+    }, [])
 
     const shortening = async () => {
         const res = await Short(link)

@@ -82,6 +82,10 @@ body {
     height: 100%;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .br-none {
     border: 0;
 }
@@ -121,8 +125,4 @@ body {
 // ЭНЭ CSS ЯМАР УЧИРТАЙГ САЙН СУДЛАХ
 * {
     box-sizing: border-box;
-}
-
-.home {
-    visibility: hidden;
 }

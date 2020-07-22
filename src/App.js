@@ -7,12 +7,16 @@ import {
     Route
 } from "react-router-dom";
 import './style/main.scss';
+import { ReDirect } from './components/redirect';
 
 const App = () => {
     return (
         <Router>
             <Provider>
                 <Switch>
+                    <Route path="/" exact>
+                        <HomeDefault />
+                    </Route>
                     <Route path="/logIn">
                         <LogIn />
                     </Route>
@@ -31,8 +35,8 @@ const App = () => {
                     <Route path="/shortened">
                         <Shortened />
                     </Route>
-                    <Route path="/">
-                        <HomeDefault />
+                    <Route path="*" >
+                        <ReDirect />
                     </Route>
                 </Switch>
             </Provider>
