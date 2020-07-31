@@ -13,6 +13,7 @@ export const Provider = ({ children }) => {
     short: "",
   });
   const history = useHistory();
+
   useEffect(() => {
     authState(app.auth())
       .pipe(
@@ -23,7 +24,11 @@ export const Provider = ({ children }) => {
           .collection("users")
           .doc(uid)
           .onSnapshot((data) => {
-            setUser(data.data());
+            setUser({
+              name: data.data().name,
+              history: data.data().history,
+              uid
+            });
           })
       });
   }, []);
@@ -41,9 +46,9 @@ export const Provider = ({ children }) => {
   };
 
   const createUser = ({ email, password, rePassword }) => {
-    if (password !== rePassword) {
+    if (password !== rePassword)
       alert("Нууц үг таарсангүй шалгаад дахин оролдоно уу !!!");
-    } else {
+    else
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((cal) => {
@@ -61,7 +66,7 @@ export const Provider = ({ children }) => {
           else if (errorCode === "email-already-in-use") alert("Email бүртгэлтэй байна !!!");
           else if (errorCode === "weak-password") alert("Нууц үг энгийн байна !!!");
         });
-    }
+
   };
 
   const logOut = () => {
@@ -81,39 +86,26 @@ export const Provider = ({ children }) => {
         if (separateLink === "http:" || separateLink === "https:") window.location.replace(toLink);
         else window.location.replace("https://" + toLink);
       })
-      .catch((error) => {
-        window.location.href = "/";
-      });
+      .catch(() => window.location.href = "/");
   };
 
-  const addHistory = (long, short) => {
+  const addHistory = (long, domain, random) => {
     authState(app.auth())
       .pipe(
         filter(u => u !== null)
       ).subscribe(user => {
         var uid = user.uid;
         firestore
-          .collection("users")
-          .doc(uid)
-          .get()
-          .then((res) => {
-            const oldHistory = res.data().history;
-            oldHistory.push({
-              long: long,
-              short: short
-            })
-            firestore
-              .collection('users')
-              .doc(uid)
-              .set({
-                history: oldHistory
-              }, { merge: true })
-          });
+          .collection(`users/${uid}/history`)
+          .doc(random)
+          .set({
+            long,
+            short: domain + random
+          })
       });
   };
 
   const resetPassword = (email) => {
-
     auth.sendPasswordResetEmail(email).then(function () {
       alert('New password sent to your email')
     }).catch(function (error) {

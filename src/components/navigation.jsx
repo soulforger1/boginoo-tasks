@@ -16,7 +16,7 @@ export const Navigation = () => {
 
   useEffect(() => {
     const dropdown = () => {
-      document.getElementById("dropdown").style.display = "table";
+      document.getElementById("dropdown").style.display = "block";
       document.body.addEventListener("click", listener);
     };
     const listener = () => {

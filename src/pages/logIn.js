@@ -1,31 +1,21 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  Layout,
-  Button,
-  Input,
-  IconDash,
-  IconEndBracket,
-  IconStartBracket
-} from "../components/";
+import { Layout, Button, Input, IconDash, IconEndBracket, IconStartBracket } from "../components/";
 import { context } from '../provider/react-provider'
+import { useKeyPress } from "../hooks/useEnterPress";
 
 export const LogIn = () => {
   const { logIn } = useContext(context)
-
+  const isClicked = useKeyPress(13)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
 
-  const signout = () => {
-    history.push("/signout");
-  };
-  const homePage = () => {
-    history.push("/");
-  };
-  const recover = () => {
-    history.push("/recover");
-  };
+  const signout = () => history.push("/signout");
+  const homePage = () => history.push("/");
+  const recover = () => history.push("/recover");
+
+  if (isClicked === true) logIn({ email, password })
 
   return (
     <Layout status="logging">
@@ -52,19 +42,17 @@ export const LogIn = () => {
           className="fs-18 lh-23 br-none bx-sh-2 br-ra-100 h-4 w-38 ph-4 outline-none"
           placeholder="name@mail.domain"
           label="Цахим хаяг"
-          id="gmail"
           labelClassName="font-ubuntu fs-18 lh-23 h-4 w-38 pa-2"
-          onChange={() => setEmail(document.getElementById('gmail').value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           fatherClass="flex flex-col items-center "
           className="fs-18 lh-23 br-none bx-sh-2 br-ra-100 h-4 w-38 ph-4 outline-none"
           placeholder="••••••••••"
           label="Нууц үг"
-          id="password"
           type="password"
           labelClassName="font-ubuntu fs-18 lh-23 h-4 w-38 pa-2"
-          onChange={() => setPassword(document.getElementById('password').value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <div className="flex w-37 mt-4 justify-between">
           <div className="font-ubuntu c-primary flex">

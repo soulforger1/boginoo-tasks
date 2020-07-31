@@ -28,7 +28,7 @@ export const HomeDefault = () => {
                 long: link,
                 short: domain + res
             })
-            await addHistory(link, domain + res)
+            await addHistory(link, domain, res)
             history.push('/shortened')
         }
 
